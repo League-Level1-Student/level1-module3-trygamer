@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class SimonSays extends KeyAdapter {
 
-	int y = new Random().nextInt(10);
+	int y = new Random().nextInt(2);
 	JFrame f = new JFrame();
 	// Complete steps 1 - 7 before you test
 	// 1. Make a JFrame variable
@@ -63,28 +63,30 @@ public class SimonSays extends KeyAdapter {
 		// 17. if the keyCode matches the imageIndex and "Simon says..." increase their
 		// score
 
-		if (keyCode == imageIndex && y >= 4) {
+		if (keyCode == imageIndex && y == 0) {
 			p = +1;
 
 			speak("correct");
 
 		}
 
-		else {
+		else if(keyCode != imageIndex && y == 0) {
 			speak("incorrect");
 			tries = +1;
 		}
 		// 18. if the keyCode doesn't match the imageIndex and "Simon didn't say..."
 		// increase their score
+		
+		
 
-		if (keyCode != imageIndex && y < 4) {
+		if (keyCode != imageIndex && y == 1) {
 			p = +1;
 
 			speak("correct");
 
 		}
 
-		else {
+		else if(keyCode == imageIndex && y == 1){
 			speak("incorrect");
 			tries = +1;
 		}
@@ -117,7 +119,7 @@ public class SimonSays extends KeyAdapter {
 
 	private void showImage() {
 		// 5. initialize your frame to a new JFrame()
-
+		 f = new JFrame();
 		// 6. set the frame to visible
 
 		f.setVisible(true);
@@ -141,14 +143,16 @@ public class SimonSays extends KeyAdapter {
 		// 10. Use the speak method to either say "Simon says press this key" or "Press
 		// this key"
 		// Hint: use the simonSays int and a random number
+		
+		y = new Random().nextInt(2);
 
-		if (y >= 4) {
+		if (y == 0) {
 
 			System.out.println("Simon says press this key");
 
 		}
 
-		else if (y < 4) {
+		else if (y == 1) {
 
 			System.out.println("Press this key");
 		}
@@ -174,7 +178,7 @@ public class SimonSays extends KeyAdapter {
 		}
 	}
 
-	public void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		new SimonSays().makeAlbum();
 	}
 }
