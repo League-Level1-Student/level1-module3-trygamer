@@ -10,6 +10,7 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -18,7 +19,10 @@ import javax.swing.JLabel;
  **/
 
 public class BookOfIllusions extends MouseAdapter {
-
+JFrame f = new JFrame();
+String images;
+String image;
+JLabel l;
 	/*
 	 * Here we are instantiating our BookOfIllusions class and calling it’s
 	 * createBook() method. This is because we want to get out of the static main
@@ -34,21 +38,42 @@ public class BookOfIllusions extends MouseAdapter {
 
 	private void createBook() {
 		// 2. make the frame visible
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);		
+		f.setVisible(true);
 		// 3. set the size of the frame
+		f.setSize(100, 100);
 		// 4. find 2 images and save them to your project’s default package
+		
+		
 		// 5. make a variable to hold the location of your image. e.g. "illusion.jpg"
+images = "download-2.jpg";		
+image = "download-3.jpg"	;	
 		// 6. create a variable of type "JLabel" but don’t initialize it yet
 		// 7. use the "loadImage..." methods below to initialize your JLabel
+
+l= loadImageFromComputer(images);
 		// 8. add your JLabel to the frame
+f.add(l);
 		// 9. call the pack() method on the frame
+f.pack();
 		// 10. add a mouse listener to your frame (hint: use *this*)
+f.addMouseListener(this);
 	}
 
 	public void mousePressed(MouseEvent e) {
+		
+		System.out.println("clicked");
 		// 11. Print "clicked!" to the console when the mouse is pressed
+		
 		// 12. remove everything from the frame that was added earlier
+		f.remove(l);
+		
+		
 		// 13. load a new image like before (this is more than one line of code)
+		l= loadImageFromComputer(image);
+		f.add(l);
 		// 14. pack the frame
+		f.pack();
 	}
 
 	// [OPTIONAL] 15. goad your users with some annoying or witty pop-ups
