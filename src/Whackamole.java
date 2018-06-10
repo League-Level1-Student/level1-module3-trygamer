@@ -1,11 +1,14 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Whackamole {
+public class Whackamole implements ActionListener {
 JFrame f = new JFrame();
 JPanel p = new JPanel();
-	
+	Random y = new Randomint(23);
 JButton b1 =new JButton();
 JButton b2=new JButton();
 JButton b3 =new JButton();
@@ -38,7 +41,7 @@ public static void main(String[] args) {
 
 public void Set() {
 	f.setVisible(true);
-	f.setSize(300, 500);
+	f.setSize(300, 300);
 	f.add(p);
 	p.add(b1);
 	p.add(b2);
@@ -66,7 +69,26 @@ public void Set() {
 	p.add(b23);
 	p.add(b24);
 }
-	public  void DrawButtons(int Random  ){
+	public  void DrawButtons( int y  ){
+		
+		
+		for(int i=0; i<23; i++ ) {
+			JButton b = new JButton();
+			p.add(b);
+			b.addActionListener(this);
+			if(i==Random) {
+				b.setText("mole");
+			}
+		}
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton buttonPressed = (JButton) e.getSource();
+		
+		
 		
 		
 	}
