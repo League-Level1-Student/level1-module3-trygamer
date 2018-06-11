@@ -75,7 +75,7 @@ public static void main(String[] args) {
 		
 		f.dispose();
 		
-		drawButtons();
+		drawButtons();gggg
 		
 		
 		if(hit==10) {
