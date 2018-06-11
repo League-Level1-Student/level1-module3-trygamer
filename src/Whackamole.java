@@ -1,83 +1,55 @@
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Whackamole implements ActionListener {
-JFrame f = new JFrame();
-JPanel p = new JPanel();
-	Random y = new Randomint(23);
-JButton b1 =new JButton();
-JButton b2=new JButton();
-JButton b3 =new JButton();
-JButton b4=new JButton();
-JButton b5 =new JButton();
-JButton b6 =new JButton();
-JButton b7 =new JButton();
-JButton b8 =new JButton();
-JButton b9 =new JButton();
-JButton b10 =new JButton();
-JButton b11 =new JButton();
-JButton b12 =new JButton();
-JButton b13 =new JButton();
-JButton b14 =new JButton();
-JButton b15 =new JButton();
-JButton b16 =new JButton();
-JButton b17 =new JButton();
-JButton b18 =new JButton();
-JButton b19 =new JButton();
-JButton b20 =new JButton();
-JButton b21 =new JButton(); 
-JButton b22 =new JButton();
-JButton b23 =new JButton();
-JButton b24 =new JButton();
+JFrame f;
+JPanel p;
+	Random y = new Random();
+	JButton b;
+	JButton mole;
+	int num;
+	int hit;
+	
+	Date d;
 	
 public static void main(String[] args) {
-	new Whackamole().Set();
+	new Whackamole().drawButtons();
 }
 
 
-public void Set() {
-	f.setVisible(true);
-	f.setSize(300, 300);
-	f.add(p);
-	p.add(b1);
-	p.add(b2);
-	p.add(b3);
-	p.add(b4);
-	p.add(b5);
-	p.add(b6);
-	p.add(b7);
-	p.add(b8);
-	p.add(b9);
-	p.add(b10);
-	p.add(b11);
-	p.add(b11);
-	p.add(b12);
-	p.add(b13);
-	p.add(b14);
-	p.add(b15);
-	p.add(b16);
-	p.add(b17);
-	p.add(b18);
-	p.add(b19);
-	p.add(b20);
-	p.add(b21);
-	p.add(b22);
-	p.add(b23);
-	p.add(b24);
-}
-	public  void DrawButtons( int y  ){
+
+	
+	
+
+	public  void drawButtons( ){
+		f= new JFrame();
+		p= new JPanel();
+		f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		f.setSize(300, 300);
+		f.add(p);
 		
-		
+		 num = y.nextInt(23);
+		System.out.println(num);
 		for(int i=0; i<23; i++ ) {
-			JButton b = new JButton();
+			 b = new JButton();
 			p.add(b);
+			
 			b.addActionListener(this);
-			if(i==Random) {
-				b.setText("mole");
+			if(i==num) {
+				b.setText("mole!");
+				mole = b;
+				
+				
 			}
 		}
 		
@@ -87,13 +59,56 @@ public void Set() {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
+		Date d = new Date();
+		
+		if(buttonPressed== mole) {
+			
+			playSound("114685__qat__whack04 (1).mp3");
+			 hit += 1;
+			 System.out.println(hit);
+		}
+		else {
+			speak("you missed");
+			
+			
+		}
+		
+		f.dispose();
+		
+		drawButtons();
 		
 		
-		
+		if(hit==10) {
+			
+			
+			endGame(d,10 );
+		}
 		
 	}
 	
 	
+	
+	
+	
+	void speak(String words) {
+	     try {
+	          Runtime.getRuntime().exec("say " + words).waitFor();
+	     } catch (Exception e) {
+	          e.printStackTrace();
+	     }
+	}
+	private void endGame(Date timeAtStart, int molesWhacked) {
+	     Date timeAtEnd = new Date();
+	     JOptionPane.showMessageDialog(null, "Your whack rate is "
+	          + ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked)
+	          + " moles per second.");
+	}
+	
+	private void playSound(String fileName) {
+	     AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+	     sound.play();
+	}
+
 }
 
 
