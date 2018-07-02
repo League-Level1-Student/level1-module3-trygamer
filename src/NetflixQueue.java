@@ -30,9 +30,11 @@ nq.addMovie(m2);
 nq.addMovie(m3);
 nq.addMovie(m4);
 m1.getTicketPrice();
+
+Movie second = nq.getgestMovie();
  Movie best = nq.getBestMovie();
  JOptionPane.showMessageDialog(null, "The best movie is "+ best );
- JOptionPane.showMessageDialog(null, "The best movie is "+ best );
+ JOptionPane.showMessageDialog(null, "The second movie is "+ second );
 
 
 nq.sortMoviesByRating();
@@ -43,6 +45,10 @@ nq.sortMoviesByRating();
 	public Movie getBestMovie() {
 		this.sortMoviesByRating();
 		return movies.get(0);
+	}
+	public Movie getgestMovie() {
+		this.sortMoviesByRating();
+		return movies.get(1);
 	}
 
 	public void addMovie(Movie movie) {
