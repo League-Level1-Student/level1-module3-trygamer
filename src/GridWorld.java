@@ -19,16 +19,14 @@ public class GridWorld {
 
 
 	
-	public static void main(String[] args) {
+	public  void main(String[] args) {
 		
 		w.show();
-		for(int i=0;i<100;i++) {
-			int r=y.nextInt(11);
-			 int t = y.nextInt(8);
-			 Location l2 = new Location(r, t);
-			w.add(l2, f1);
-
-			
+		for(int i=0;i<10;i++) {
+			for(int g=0; g<10;g++) {
+				Location l2 = new Location(i, g);	
+				w.add(l2, f1);
+			}
 		}
 	}
 	
